@@ -1,0 +1,18 @@
+[project]
+name = "mcp-conserver"
+version = "0.1.0"
+description = "MCP server for interacting with serial consoles via conserver"
+license = "GPL-2.0-only"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=3.0,<4",
+    "click>=8.0",
+    "gssapi",
+]
+
+[project.scripts]
+mcp-conserver = "mcp_conserver:main"
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"

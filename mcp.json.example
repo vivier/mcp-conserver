@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "conserver": {
+      "command": "mcp-conserver"
+    }
+  }
+}
