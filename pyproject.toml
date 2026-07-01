@@ -3,7 +3,20 @@ name = "mcp-conserver"
 version = "0.1.0"
 description = "MCP server for interacting with serial consoles via conserver"
 license = "GPL-2.0-only"
+readme = "README.md"
 requires-python = ">=3.10"
+authors = [
+    { name = "Laurent Vivier" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Networking",
+]
 dependencies = [
     "fastmcp>=3.0,<4",
     "click>=8.0",
@@ -12,6 +25,10 @@ dependencies = [
 
 [project.scripts]
 mcp-conserver = "mcp_conserver:main"
+
+[project.urls]
+Homepage = "https://github.com/vivier/mcp-conserver"
+Repository = "https://github.com/vivier/mcp-conserver"
 
 [build-system]
 requires = ["setuptools>=64"]
