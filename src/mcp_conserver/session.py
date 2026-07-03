@@ -114,6 +114,20 @@ class ConserverSession:
             self._buffer = ''
             return data
 
+    def pause_reader(self) -> str:
+        self._stop_event.set()
+        if self._reader_thread and self._reader_thread.is_alive():
+            self._reader_thread.join(timeout=2)
+        with self._lock:
+            buf = self._buffer
+            self._buffer = ''
+            return buf
+
+    def resume_reader(self, remaining: str = '') -> None:
+        with self._lock:
+            self._buffer = remaining + self._buffer
+        self.start_reader()
+
     def close(self) -> None:
         self._stop_event.set()
         if self.conn.sock:
