@@ -12,13 +12,23 @@ commands, read output, and manage console sessions through the
 - **Connect** to a console in attach, spy (read-only), or force mode
 - **Send** commands and read output interactively
 - **Send control characters** (Ctrl-C, Ctrl-D, etc.)
+- **Expect scripting** for automated interaction (wait for patterns, branch on output)
 - **Query** who is connected to consoles
 - **Disconnect** users from consoles
 - **SSL/TLS** and **GSSAPI/Kerberos** authentication
+- **Multiple transports**: stdio, SSE, and streamable-http
 
 ## Installation
 
 ```bash
+pip install mcp-conserver
+```
+
+Or install from source:
+
+```bash
+git clone https://github.com/vivier/mcp-conserver.git
+cd mcp-conserver
 python -m venv venv
 source venv/bin/activate
 pip install -e .
@@ -41,14 +51,7 @@ All defaults can be overridden per tool call.
 
 ## Usage with Claude Code
 
-Activate the virtual environment before starting Claude Code:
-
-```bash
-source /path/to/mcp-conserver/venv/bin/activate
-claude
-```
-
-Then add to `.mcp.json` in your project directory (see
+Add to `.mcp.json` in your project directory (see
 `mcp.json.example`):
 
 ```json
@@ -61,6 +64,12 @@ Then add to `.mcp.json` in your project directory (see
 }
 ```
 
+To use SSE or streamable-http transport instead of stdio:
+
+```bash
+mcp-conserver --transport sse --host 0.0.0.0 --port 9820
+```
+
 ## Tools
 
 | Tool | Description |
@@ -70,7 +79,8 @@ Then add to `.mcp.json` in your project directory (see
 | `console_list_sessions` | List active sessions |
 | `console_send` | Send text and return output |
 | `console_read` | Read latest console output |
-| `console_send_control` | Send control characters |
+| `console_send_control` | Send control characters (Ctrl-C, Ctrl-D, etc.) |
+| `console_expect` | Run expect-like scripts (wait for patterns, send on match) |
 | `console_who` | Show who is connected |
 
 ## Architecture
